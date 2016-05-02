@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MyMobileSafe</string>
+    <string name="version_url">http://192.168.30.252:8080/info.json</string>
+</resources>

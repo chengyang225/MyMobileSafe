@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+
+    >
+<TextView
+    android:textSize="20sp"
+    android:gravity="center"
+    android:textColor="@android:color/darker_gray"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="功能列表"
+    android:padding="10dp"/>
+    <ui.FocusTextView
+        android:padding="2dp"
+        android:singleLine="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:ellipsize="marquee"
+        android:text="从前有座山,山里有个庙,从前有座山,山里有个庙,从前有座山,山里有个庙,从前有座山,山里有个庙,从前有座山,山里有个庙,"/>
+    <GridView
+        android:id="@+id/gv_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="3"
+        ></GridView>
+</LinearLayout>
