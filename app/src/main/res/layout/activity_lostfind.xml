@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+<TextView
+    android:text="设置完成"
+    style="@style/textview_tittle"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="安全号码"
+            android:textSize="18sp"
+            android:textColor="#000"/>
+        <TextView
+            android:id="@+id/tv_safe_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2621737"
+            android:layout_alignParentRight="true"
+            android:textSize="18sp"
+            android:textColor="#000"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="防盗保护状态"
+            android:textSize="18sp"
+            android:textColor="#000"/>
+        <ImageView
+            android:id="@+id/iv_lock_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/lock"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+    <TextView
+        style="@style/textview_content"
+        android:text="重新进入设置向导"
+        android:clickable="true"
+        android:onClick="resetSetup"
+        android:background="@android:color/holo_green_light"/>
+    <TextView
+        android:layout_marginTop="5dp"
+        style="@style/textview_content"
+        android:text="功能列表"
+        android:background="@android:color/darker_gray"/>
+    <TextView
+        android:text="远程锁屏*lockscreen*"
+        android:drawableLeft="@android:drawable/star_big_on"
+        style="@style/textview_content"/>
+
+    <TextView
+        android:text="GPS定位*location*"
+        android:drawableLeft="@android:drawable/star_big_on"
+        style="@style/textview_content"/>
+
+    <TextView
+        android:text="播放报警音乐*alarm*"
+        android:drawableLeft="@android:drawable/star_big_on"
+        style="@style/textview_content"/>
+
+    <TextView
+        android:text="清除数据*clear*"
+        android:drawableLeft="@android:drawable/star_big_on"
+        style="@style/textview_content"/>
+
+</LinearLayout>

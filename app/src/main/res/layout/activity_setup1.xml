@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+<TextView
+    style="@style/textview_tittle"
+    android:text="1.设置向导"/>
+    <TextView
+       style="@style/textview_content"
+        android:text="您的手机防盗卫士"/>
+
+    <TextView
+        style="@style/textview_content"
+        android:drawableLeft="@android:drawable/star_big_on"
+        android:text="SIM卡变更报警"
+        />
+
+    <TextView
+        style="@style/textview_content"
+        android:drawableLeft="@android:drawable/star_big_on"
+        android:text="GPS防盗定位"
+        />
+
+    <TextView
+        style="@style/textview_content"
+        android:drawableLeft="@android:drawable/star_big_on"
+        android:text="远程销毁数据"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_online"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_invisible"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_invisible"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_invisible"/>
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:src="@mipmap/setup1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"/>
+        <Button
+            android:onClick="next"
+            android:text="下一步"
+            android:layout_margin="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:drawableRight="@mipmap/next"
+            android:textSize="18sp"
+            android:background="@drawable/btn_green"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+</LinearLayout>
