@@ -4,13 +4,8 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 <TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     android:text="手机设置"
-    android:textSize="20sp"
-    android:gravity="center"
-    android:textColor="#000"
-    android:padding="10dp"/>
+    style="@style/textview_tittle"/>
 <ui.SetRelativeLayout
     android:id="@+id/set_rel"
     android:layout_width="match_parent"

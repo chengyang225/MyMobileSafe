@@ -6,13 +6,9 @@
 
     >
 <TextView
-    android:textSize="20sp"
-    android:gravity="center"
-    android:textColor="@android:color/darker_gray"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    style="@style/textview_tittle"
     android:text="功能列表"
-    android:padding="10dp"/>
+    />
     <ui.FocusTextView
         android:padding="2dp"
         android:singleLine="true"

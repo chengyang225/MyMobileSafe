@@ -145,6 +145,7 @@ public class SplashActivity extends AppCompatActivity {
             URL url = new URL(getString(R.string.version_url));
             //打开连接
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setConnectTimeout(5000);
             //获取响应码
             int code = conn.getResponseCode();
             //获取输入流
