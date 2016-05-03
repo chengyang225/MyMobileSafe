@@ -8,7 +8,7 @@ android {
         applicationId "com.testdemo.chanian.mymobilesafe"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 1
+        versionCode 2
         versionName "手机安全卫士旗舰版"
     }
     buildTypes {
