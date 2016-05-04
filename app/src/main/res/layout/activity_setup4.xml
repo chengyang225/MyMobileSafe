@@ -9,11 +9,18 @@
         style="@style/textview_tittle"
         android:text="4.设置向导"/>
 <ui.SetRelativeLayout
+    android:id="@+id/set_ui_cb"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     hehe:mytext="开启防盗保护"></ui.SetRelativeLayout>
 
-
+    <Button
+        android:onClick="onstarted"
+        android:layout_width="match_parent"
+        android:background="@drawable/btn_green"
+        android:textColor="#ffffff"
+        android:text="只有激活高级权限,手机丢失才能找回"
+        android:layout_height="wrap_content"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

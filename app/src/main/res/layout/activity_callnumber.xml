@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
+        android:text="黑名单列表"
+        style="@style/textview_tittle"
+        android:layout_height="wrap_content"
+        />
+    <Button
+        android:text="添加"
+        style="@style/Base.Widget.AppCompat.Button.Small"
+        android:layout_marginRight="3dp"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>
+    <ListView
+        android:id="@+id/iv_black_lists"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
+</LinearLayout>

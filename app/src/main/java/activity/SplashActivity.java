@@ -146,6 +146,7 @@ public class SplashActivity extends AppCompatActivity {
             //打开连接
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setConnectTimeout(5000);
+
             //获取响应码
             int code = conn.getResponseCode();
             //获取输入流
@@ -158,8 +159,6 @@ public class SplashActivity extends AppCompatActivity {
                 updateInfo.version = jsonObject.getInt("version");
                 updateInfo.downloadurl = jsonObject.getString("downloadurl");
                 updateInfo.desc = jsonObject.getString("desc");
-
-                //                Log.i("ian", version + " : " + downloadurl + " " + desc);
                 //需要更新
                 if (updateInfo.version > AppInfoUtils.getVersionCode(SplashActivity.this)) {
                     Message message = Message.obtain();
@@ -170,6 +169,10 @@ public class SplashActivity extends AppCompatActivity {
                     IntentUtils.startActivityForDelayAndFinished(SplashActivity.this,
                             HomeActivity.class, 2000);
                 }
+            }else {
+                    IntentUtils.startActivityForDelayAndFinished(SplashActivity.this,
+                            HomeActivity.class, 2000);
+
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();

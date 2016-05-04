@@ -29,7 +29,7 @@ public class LostFindActivity extends Activity {
         mSp=getSharedPreferences("config",MODE_PRIVATE);
         String safeNum = mSp.getString("safeNum", "");
         tv_safe_num.setText(safeNum);
-        if(mSp.getBoolean("protected",false)) {//远程保护开启
+        if(mSp.getBoolean("protected",false)) {//防盗保护开启
             iv_lock_icon.setImageResource(R.mipmap.lock);
         }else {
             iv_lock_icon.setImageResource(R.mipmap.unlock);
