@@ -26,8 +26,8 @@ public class TestBlackDao extends AndroidTestCase {
 
     public void testAdd() {
         Random random = new Random();
-        for (int i = 0; i < 10; i++) {
-            String phone = "1858" + i;
+        for (int i = 0; i < 1000; i++) {
+            String phone = "185" + i;
             String mode = "" + (random.nextInt(3) + 1);
             mDao.insert(phone, mode);
         }

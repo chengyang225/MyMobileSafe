@@ -9,10 +9,10 @@ import android.content.Intent;
 //跳转并关闭页面
 public class IntentUtils {
     public static void startActivityForDelayAndFinished(final Activity activity,
-                                                        final Class<?> clazz, final long time){
+                                                        final Class<?> clazz, final long time) {
         //开线程跳转
-        new Thread(){
-            public void run(){
+        new Thread() {
+            public void run() {
 
                 try {
                     Thread.sleep(time);
@@ -26,24 +26,23 @@ public class IntentUtils {
         }.start();
 
     }
+
     public static void startActivityAndFinished(final Activity activity,
-                                                        final Class<?> clazz){
+                                                final Class<?> clazz) {
         //开线程跳转
-        new Thread(){
-            public void run(){
-                Intent intent = new Intent(activity, clazz);
-                activity.startActivity(intent);
-                activity.finish();
-            }
-        }.start();
+        Intent intent = new Intent(activity, clazz);
+        activity.startActivity(intent);
+        activity.finish();
+
 
     }
+
     //开启新页面
     public static void startActivity(final Activity activity,
-                                                        final Class<?> clazz){
+                                     final Class<?> clazz) {
         //开线程跳转
-        new Thread(){
-            public void run(){
+        new Thread() {
+            public void run() {
                 Intent intent = new Intent(activity, clazz);
                 activity.startActivity(intent);
             }

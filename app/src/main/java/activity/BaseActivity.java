@@ -35,7 +35,7 @@ public abstract class BaseActivity extends Activity{
 
                 if(e2.getRawX()-e1.getRawX()>100) {
                     showPre();
-                    overridePendingTransition(R.anim.pre_next_in,R.anim.pre_next_out);
+                    overridePendingTransition(R.anim.tran_pre_in,R.anim.tran_pre_out);
                     return  true;
                 }
 
@@ -43,6 +43,13 @@ public abstract class BaseActivity extends Activity{
             }
         });
     }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        mGestureDetector.onTouchEvent(event);
+        return super.onTouchEvent(event);
+    }
+
     public abstract void showNext();
     public abstract void showPre();
     public void next(View view){
@@ -51,6 +58,6 @@ public abstract class BaseActivity extends Activity{
     }
     public void pre(View view){
         showPre();
-        overridePendingTransition(R.anim.pre_next_in,R.anim.pre_next_out);
+        overridePendingTransition(R.anim.tran_pre_in,R.anim.tran_pre_out);
     }
 }

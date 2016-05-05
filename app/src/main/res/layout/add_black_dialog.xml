@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="300dp"
+              android:id="@+id/add_black_dialog"
               android:layout_height="match_parent">
 <TextView
     android:text="添加黑名单"
@@ -42,14 +43,15 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <Button
-            android:onClick="confirmClick"
+            android:id="@+id/btn_addBlack_confirm"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="确定"
             android:background="@drawable/btn_green"
             android:layout_height="wrap_content"/>
         <Button
-            android:onClick="confirmClick"
+            android:id="@+id/btn_addBlack_cancel"
+            android:onClick="cancelClick"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:text="取消"

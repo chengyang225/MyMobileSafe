@@ -27,6 +27,9 @@
         <activity android:name="activity.Setup3Activity"/>
         <activity android:name="activity.Setup4Activity"/>
         <activity android:name="activity.SelectContactActivity"/>
+        <activity android:name="activity.CallBlackActivity"/>
+
+
 
         <receiver android:name="receiver.BootReceiver">
             <intent-filter>
@@ -38,7 +41,6 @@
                 <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
             </intent-filter>
         </receiver>
-
         <receiver android:name="receiver.MyReceiver"
                   android:label="@string/sample_device_admin"
                   android:description="@string/sample_device_admin_description"
@@ -49,8 +51,17 @@
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
             </intent-filter>
         </receiver>
+
+
+
         <service android:name="service.MyLocationService"/>
+        <service android:name="service.CallPhoneBlackServicve"/>
     </application>
+
+
+    <uses-permission android:name="android.permission.WRITE_CALL_LOG"/>
+    <uses-permission android:name="android.permission.READ_CALL_LOG"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
     <uses-permission android:name="android.permission.SEND_SMS"/>
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>

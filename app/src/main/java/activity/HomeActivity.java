@@ -2,12 +2,9 @@ package activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Layout;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +57,9 @@ public class HomeActivity extends Activity {
                             showEnterDialog();
                         }
                         break;
+                    case 1:
+                        IntentUtils.startActivity(HomeActivity.this, CallBlackActivity.class);
+                        break;
                     case 8:
                         IntentUtils.startActivity(HomeActivity.this, SettingActivity.class);
                         break;
@@ -106,9 +106,9 @@ public class HomeActivity extends Activity {
                 }
                 //已完成设置
                 if(mSp.getBoolean("finishSetup",false)) {
-                    IntentUtils.startActivityAndFinished(HomeActivity.this,LostFindActivity.class);
+                    IntentUtils.startActivity(HomeActivity.this,LostFindActivity.class);
                 }else {
-                    IntentUtils.startActivityAndFinished(HomeActivity.this,Setup1Activity.class);
+                    IntentUtils.startActivity(HomeActivity.this,Setup1Activity.class);
                 }
                 mDialog.dismiss();
             }

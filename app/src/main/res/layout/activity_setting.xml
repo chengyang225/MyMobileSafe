@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+              xmlns:hehe="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
-<TextView
-    android:text="手机设置"
-    style="@style/textview_tittle"/>
-<ui.SetRelativeLayout
-    android:id="@+id/set_rel"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"></ui.SetRelativeLayout>
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <TextView
+        style="@style/textview_tittle"
+        android:text="手机设置"/>
+
+    <ui.SetRelativeLayout
+        android:id="@+id/set_rel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        hehe:mytext="是否自动更新"></ui.SetRelativeLayout>
+
+    <ui.SetRelativeLayout
+        android:id="@+id/set_black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        hehe:mytext="是否开启拦截"></ui.SetRelativeLayout>
 </LinearLayout>
