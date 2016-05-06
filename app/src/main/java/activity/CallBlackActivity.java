@@ -67,6 +67,7 @@ public class CallBlackActivity extends Activity {
         ll_loading = (LinearLayout) findViewById(R.id.ll_loading);
         LinearLayout add_ll = (LinearLayout) findViewById(R.id.add_black_dialog);
         mDao = new BlackNumberDao(this);
+        final int count = mDao.queryCount();
         iv_black_lists.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -76,6 +77,9 @@ public class CallBlackActivity extends Activity {
                     int position = iv_black_lists.getLastVisiblePosition();
                     if (position == mInfos.size() - 1) {//滑到最后一个继续加载
                         startIndex += loadCount;
+                        if(startIndex>count) {//没有更多数据了
+                            ToastUtils.getToast(CallBlackActivity.this,"没有更多数据了!");
+                        }
                         loadDatas();
                     }
                 }

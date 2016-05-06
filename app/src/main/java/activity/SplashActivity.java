@@ -25,6 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -125,6 +126,7 @@ public class SplashActivity extends AppCompatActivity {
         animation.setDuration(2000);
         rlLayout.startAnimation(animation);
         mSp = getSharedPreferences("config", MODE_PRIVATE);
+        copyDb("address.db");
         new Thread() {
             public void run() {
 
@@ -133,6 +135,35 @@ public class SplashActivity extends AppCompatActivity {
                 } else {
                     IntentUtils.startActivityForDelayAndFinished(SplashActivity.this,
                             HomeActivity.class, 2000);
+                }
+            }
+        }.start();
+    }
+
+    //加载本地数据库
+    private void copyDb(final String dbName) {
+        //耗时操作放在子线程
+        new Thread() {
+            public void run() {
+                //判断是否已经复制过
+                File file = new File(getFilesDir(), dbName);
+                if (file.exists() && file.length() > 0) {
+                    return;
+                }
+                Log.v("ian", "复制");
+
+                try {
+                    InputStream is = getAssets().open(dbName);
+                    FileOutputStream fos = new FileOutputStream(file);
+                    byte[] buffer = new byte[1024];
+                    int len = 0;
+                    while ((len = is.read(buffer)) != -1) {
+                        fos.write(buffer, 0, len);
+                    }
+                    fos.close();
+                    is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         }.start();
@@ -169,9 +200,9 @@ public class SplashActivity extends AppCompatActivity {
                     IntentUtils.startActivityForDelayAndFinished(SplashActivity.this,
                             HomeActivity.class, 2000);
                 }
-            }else {
-                    IntentUtils.startActivityForDelayAndFinished(SplashActivity.this,
-                            HomeActivity.class, 2000);
+            } else {
+                IntentUtils.startActivityForDelayAndFinished(SplashActivity.this,
+                        HomeActivity.class, 2000);
 
             }
         } catch (MalformedURLException e) {

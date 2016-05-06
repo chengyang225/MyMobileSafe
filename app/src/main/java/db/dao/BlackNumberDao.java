@@ -93,4 +93,13 @@ public class BlackNumberDao {
         db.close();
         return infos;
     }
+    public int queryCount() {
+        SQLiteDatabase db = mHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT count(*) FROM t_black", null);
+        while (cursor.moveToNext()) {
+            return cursor.getInt(0);
+        }
+        db.close();
+        return -1;
+    }
 }

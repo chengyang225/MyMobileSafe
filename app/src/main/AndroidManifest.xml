@@ -28,6 +28,8 @@
         <activity android:name="activity.Setup4Activity"/>
         <activity android:name="activity.SelectContactActivity"/>
         <activity android:name="activity.CallBlackActivity"/>
+        <activity android:name="activity.AToolAcyivity"/>
+        <activity android:name="activity.QueryAddressLocationActivity"/>
 
 
 
