@@ -44,7 +44,7 @@ public class CallPhoneBlackServicve extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.v("ian", "拦截服务开启了");
+//        Log.v("ian", "拦截服务开启了");
         mDao=new BlackNumberDao(getApplicationContext());
         mManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
         mListener = new PhoneListener();
@@ -62,7 +62,7 @@ public class CallPhoneBlackServicve extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.v("ian", "拦截服务关闭了");
+//        Log.v("ian", "拦截服务关闭了");
         //服务停止时候不需要监听
         mManager.listen(mListener,PhoneStateListener.LISTEN_NONE);
         mListener=null;

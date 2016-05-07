@@ -127,6 +127,7 @@ public class SplashActivity extends AppCompatActivity {
         rlLayout.startAnimation(animation);
         mSp = getSharedPreferences("config", MODE_PRIVATE);
         copyDb("address.db");
+        copyDb("commonnum.db");
         new Thread() {
             public void run() {
 

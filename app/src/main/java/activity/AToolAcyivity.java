@@ -21,4 +21,8 @@ public class AToolAcyivity extends Activity {
     public void queryLocationClick(View view){
         IntentUtils.startActivity(this,QueryAddressLocationActivity.class);
     }
+    //公共号码查询
+    public void queryCommonsClick(View view){
+        IntentUtils.startActivity(this,CommonsActivity.class);
+    }
 }

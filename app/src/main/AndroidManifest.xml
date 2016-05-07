@@ -30,7 +30,7 @@
         <activity android:name="activity.CallBlackActivity"/>
         <activity android:name="activity.AToolAcyivity"/>
         <activity android:name="activity.QueryAddressLocationActivity"/>
-
+        <activity android:name="activity.CommonsActivity"/>
 
 
         <receiver android:name="receiver.BootReceiver">
@@ -58,9 +58,11 @@
 
         <service android:name="service.MyLocationService"/>
         <service android:name="service.CallPhoneBlackServicve"/>
+        <service android:name="service.ShowAddressService"/>
     </application>
 
-
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
     <uses-permission android:name="android.permission.WRITE_CALL_LOG"/>
     <uses-permission android:name="android.permission.READ_CALL_LOG"/>
     <uses-permission android:name="android.permission.CALL_PHONE"/>

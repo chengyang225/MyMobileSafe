@@ -3,4 +3,8 @@
     <declare-styleable name="SetRelativeLayout">
         <attr name="mytext" format="string"></attr>
     </declare-styleable>
+    <declare-styleable name="ChangeUi">
+        <attr name="mybigtext" format="string"></attr>
+        <attr name="mysmalltext" format="string"></attr>
+    </declare-styleable>
 </resources>
