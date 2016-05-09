@@ -42,7 +42,7 @@ public class SelectContactActivity extends Activity{
             }
         });
     }
-    class Holder{
+    private class Holder{
         TextView tv_name;
         TextView tv_phone;
     }

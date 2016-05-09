@@ -33,8 +33,8 @@ public class ShowAddressService extends Service {
     private TelephonyManager tm;
     private MyPhoneListener mListener;
     private MyPhoneReceiver mReceiver;
-    private int[] colors={R.mipmap.call_locate_white9,R.mipmap.call_locate_orange9,
-            R.mipmap.call_locate_blue9,R.mipmap.call_locate_gray9,R.mipmap.call_locate_green9};
+    private int[] colors={R.drawable.call_locate_white, R.drawable.call_locate_orange,
+            R.drawable.call_locate_blue,R.drawable.call_locate_gray,R.drawable.call_locate_green};
     private final WindowManager.LayoutParams mParams = new WindowManager.LayoutParams();
     private WindowManager mWm;
     private TextView mTv_address;
@@ -143,6 +143,16 @@ public class ShowAddressService extends Service {
                         //移动控件
                         params.x+=dx;
                         params.y+=dy;
+                        //不让控件移到屏幕外
+                        if(params.y>mWm.getDefaultDisplay().getHeight()-mView.getHeight()) {
+                            params.y=mWm.getDefaultDisplay().getHeight()-mView.getHeight();
+                        }else if(params.y<0) {
+                            params.y=0;
+                        }else if(params.x<0) {
+                            params.x=0;
+                        }else if(params.x>mWm.getDefaultDisplay().getWidth()-mView.getWidth()) {
+                            params.x=mWm.getDefaultDisplay().getWidth()-mView.getWidth();
+                        }
                         //更新位置
                         mWm.updateViewLayout(mView,params);
                         //重新定义初始位置
@@ -151,11 +161,10 @@ public class ShowAddressService extends Service {
                         break;
                     case  MotionEvent.ACTION_UP://抬起
                         //将最后位置储存起来
-                        float x=event.getRawX();
-                        float y=event.getRawY();
+
                         SharedPreferences.Editor edit = mSp.edit();
-                        edit.putFloat("lastx",x);
-                        edit.putFloat("lasty",y);
+                        edit.putFloat("lastx",params.x);
+                        edit.putFloat("lasty",params.y);
                         edit.commit();
                         break;
                 }

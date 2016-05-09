@@ -31,6 +31,8 @@
         <activity android:name="activity.AToolAcyivity"/>
         <activity android:name="activity.QueryAddressLocationActivity"/>
         <activity android:name="activity.CommonsActivity"/>
+        <activity android:name="activity.AppManagerActivity"/>
+        <activity android:name="activity.ProcessManagerActivity"/>
 
 
         <receiver android:name="receiver.BootReceiver">
@@ -61,6 +63,7 @@
         <service android:name="service.ShowAddressService"/>
     </application>
 
+    <uses-permission android:name="android.permission.READ_SMS"/>
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
     <uses-permission android:name="android.permission.WRITE_CALL_LOG"/>

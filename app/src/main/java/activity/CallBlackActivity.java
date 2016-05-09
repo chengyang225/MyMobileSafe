@@ -111,7 +111,7 @@ public class CallBlackActivity extends Activity {
         }.start();
     }
 
-    class Holder {
+    private class Holder {
         TextView tv_black_number;
         TextView tv_black_mode;
         ImageView iv_delete_black;
