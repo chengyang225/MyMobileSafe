@@ -130,13 +130,13 @@ public class SplashActivity extends AppCompatActivity {
         copyDb("commonnum.db");
         new Thread() {
             public void run() {
-
-                if (mSp.getBoolean("update", true)) {
-                    checkVersion();
-                } else {
-                    IntentUtils.startActivityForDelayAndFinished(SplashActivity.this,
-                            HomeActivity.class, 2000);
-                }
+                //
+                //                if (mSp.getBoolean("update", true)) {
+                //                    checkVersion();
+                //                } else {
+                //                }
+                IntentUtils.startActivityForDelayAndFinished(SplashActivity.this,
+                        HomeActivity.class, 2000);
             }
         }.start();
     }
@@ -201,10 +201,6 @@ public class SplashActivity extends AppCompatActivity {
                     IntentUtils.startActivityForDelayAndFinished(SplashActivity.this,
                             HomeActivity.class, 2000);
                 }
-            } else {
-                IntentUtils.startActivityForDelayAndFinished(SplashActivity.this,
-                        HomeActivity.class, 2000);
-
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();

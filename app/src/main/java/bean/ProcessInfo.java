@@ -11,6 +11,15 @@ public class ProcessInfo {
     private String appName;//应用名
     private long appSize;//应用大小
     private boolean userApp;//用户进程
+    private boolean checked;
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
+    }
 
     public Drawable getIcon() {
         return icon;

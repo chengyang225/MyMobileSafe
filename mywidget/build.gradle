@@ -5,11 +5,11 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "com.testdemo.chanian.mymobilesafe"
-        minSdkVersion 16
+        applicationId "com.testdemo.chanian.mywidget"
+        minSdkVersion 14
         targetSdkVersion 23
-        versionCode 2
-        versionName "手机安全卫士旗舰版"
+        versionCode 1
+        versionName "1.0"
     }
     buildTypes {
         release {
@@ -23,6 +23,4 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
-    compile 'org.xutils:xutils:3.3.34'
-    compile files('libs/xUtils-2.6.14.jar')
 }

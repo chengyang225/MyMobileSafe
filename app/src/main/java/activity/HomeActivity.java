@@ -64,6 +64,9 @@ public class HomeActivity extends Activity {
                         IntentUtils.startActivity(HomeActivity.this, AppManagerActivity.class);
 
                         break;
+                    case 3:
+                        IntentUtils.startActivity(HomeActivity.this, ProcessManagerActivity.class);
+                        break;
                     case 7:
                         IntentUtils.startActivity(HomeActivity.this,AToolAcyivity.class);
                         break;
