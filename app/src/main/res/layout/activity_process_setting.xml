@@ -11,6 +11,11 @@
         android:id="@+id/ui_show_sys_process"
         hehe:mytext="显示系统进程"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></ui.SetRelativeLayout>
+        android:layout_height="wrap_content"/>
+    <ui.SetRelativeLayout
+        android:id="@+id/ui_lock_process"
+        hehe:mytext="锁屏杀进程"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

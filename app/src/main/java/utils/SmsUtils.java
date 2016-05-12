@@ -19,8 +19,8 @@ import java.io.IOException;
  */
 public class SmsUtils {
     public interface MyCallBack{
-        public void beforeBackUp(int max);
-        public void afterBackUp(int progress);
+         void beforeBackUp(int max);
+         void afterBackUp(int progress);
     }
     public static boolean backupSms(Context context, String fileName,MyCallBack callBack) {
         //得到内容解析者

@@ -59,4 +59,8 @@ public class AToolAcyivity extends Activity {
             }
         }.start();
     }
+    //软件锁
+    public void appLockClick(View view){
+        IntentUtils.startActivity(this,AppLockActivity.class);
+    }
 }

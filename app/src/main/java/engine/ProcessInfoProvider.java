@@ -8,6 +8,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.widget.Toast;
 
 import com.testdemo.chanian.mymobilesafe.R;
 
@@ -114,5 +115,14 @@ public class ProcessInfoProvider {
         }
 
         return infos;
+    }
+    public static void killAllProcess(Context context){
+
+        ActivityManager am = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> processes = am.getRunningAppProcesses();
+        for (ActivityManager.RunningAppProcessInfo info :processes){
+            am.killBackgroundProcesses(info.processName); //杀掉进程
+        }
+        Toast.makeText(context, "已清理", Toast.LENGTH_SHORT).show();
     }
 }

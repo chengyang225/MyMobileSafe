@@ -30,4 +30,12 @@
         android:onClick="smsBackupClick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    <Button
+        android:layout_marginTop="5dp"
+        android:text="软件锁"
+        android:textSize="20sp"
+        android:background="@drawable/btn_green"
+        android:onClick="appLockClick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

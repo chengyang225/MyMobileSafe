@@ -34,6 +34,7 @@
         <activity android:name="activity.AppManagerActivity"/>
         <activity android:name="activity.ProcessManagerActivity"/>
         <activity android:name="activity.ProcessSettingActivity"/>
+        <activity android:name="activity.AppLockActivity"/>
 
 
         <receiver android:name="receiver.BootReceiver">
@@ -61,11 +62,17 @@
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
             <meta-data android:name="android.appwidget.provider"
-                       android:resource="@xml/task_manager_widget" />
+                       android:resource="@xml/process_widget_provider" />
+        </receiver>
+        <receiver android:name="receiver.ProcessKillReceiver">
+            <intent-filter>
+                <action android:name="com.ian.action.killprocess"/>
+            </intent-filter>
         </receiver>
 
 
 
+        <service android:name="service.KillProcessService"/>
         <service android:name="service.MyLocationService"/>
         <service android:name="service.CallPhoneBlackServicve"/>
         <service android:name="service.ShowAddressService"/>

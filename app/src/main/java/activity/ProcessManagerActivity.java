@@ -46,14 +46,12 @@ public class ProcessManagerActivity extends Activity {
     private TextView tv_memory_status;
     private TextView tv_process_status;
     private ListView lv_processes;
-    private Timer timer;
-    private TimerTask timerTask;
     private LinearLayout ll_loading;
     private List<ProcessInfo> mInfos;
     private List<ProcessInfo> mUserInfos;
     private List<ProcessInfo> mSysInfos;
     private List<ProcessInfo> mInKillInfos;
-    private LockReceiver mReceiver;
+
     private Handler handler = new Handler() {
         public void handleMessage(Message msg) {
             ll_loading.setVisibility(View.GONE);
@@ -84,11 +82,7 @@ public class ProcessManagerActivity extends Activity {
         mInfos = new ArrayList<>();
         mFreeRam = ProcessInfoProvider.getFreeRam(this);
 
-        //注册广播监听锁屏清理
-        mReceiver=new LockReceiver();
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(Intent.ACTION_SCREEN_OFF);
-        registerReceiver(mReceiver,filter);
+
         mCount = ProcessInfoProvider.getProcessCount(this);
         tv_process_number.setText("运行进程:" + mCount + "个");
         mTotalRam = ProcessInfoProvider.getTotalRam(this);
@@ -142,14 +136,7 @@ public class ProcessManagerActivity extends Activity {
                 mAdapter.notifyDataSetChanged();
             }
         });
-        timer=new Timer();
-        timerTask=new TimerTask() {
-            @Override
-            public void run() {
-                Log.v("ian", "hehe");
-            }
-        };
-        timer.schedule(timerTask,5000,5000);//每隔5秒执行一次
+
     }
 
     //开启多线程加载数据
@@ -326,17 +313,7 @@ public class ProcessManagerActivity extends Activity {
 
 
     }
-    private class LockReceiver extends BroadcastReceiver{
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-            List<ActivityManager.RunningAppProcessInfo> processes = am.getRunningAppProcesses();
-            for (ActivityManager.RunningAppProcessInfo info :processes){
-               am.killBackgroundProcesses(info.processName); //杀掉进程
-            }
-            mAdapter.notifyDataSetChanged();
-        }
-    }
+
     //刷新数据
     @Override
     protected void onStart() {
@@ -349,11 +326,6 @@ public class ProcessManagerActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //注销广播
-        unregisterReceiver(mReceiver);
-        mReceiver=null;
-        //定时器和任务停止
-        timer.cancel();;
-        timerTask.cancel();
+
     }
 }
