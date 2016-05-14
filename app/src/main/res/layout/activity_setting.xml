@@ -25,6 +25,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         hehe:mytext="是否开启通话归属地显示"></ui.SetRelativeLayout>
+    <ui.SetRelativeLayout
+        android:id="@+id/set_watch_dog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        hehe:mytext="是否开启开门狗"></ui.SetRelativeLayout>
     <ui.ChangeUi
         android:id="@+id/change_address_color"
         hehe:mybigtext="选择背景风格"

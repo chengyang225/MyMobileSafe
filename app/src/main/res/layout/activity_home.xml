@@ -5,6 +5,13 @@
               android:layout_height="match_parent"
 
     >
+    <LinearLayout
+        android:id="@+id/ll_ad"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
 <TextView
     style="@style/textview_tittle"
     android:text="功能列表"

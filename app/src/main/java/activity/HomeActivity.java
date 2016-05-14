@@ -14,9 +14,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.testdemo.chanian.mymobilesafe.R;
+
+import net.youmi.android.AdManager;
+import net.youmi.android.banner.AdSize;
+import net.youmi.android.banner.AdView;
 
 import utils.IntentUtils;
 import utils.ToastUtils;
@@ -33,6 +38,7 @@ public class HomeActivity extends Activity {
     private SharedPreferences mSp;
     private View mView;
     private AlertDialog mDialog;
+    private LinearLayout ll_ad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +46,18 @@ public class HomeActivity extends Activity {
         setContentView(R.layout.activity_home);
         mSp = getSharedPreferences("config", MODE_PRIVATE);
         gv_home = (GridView) findViewById(R.id.gv_home);
+        ll_ad = (LinearLayout)findViewById(R.id.ll_ad);
         HomeAdapter adapter = new HomeAdapter();
         gv_home.setAdapter(adapter);
+        //测试集成广告
+        AdManager.getInstance(this).init("9f62a03fc6139912","3fb4466580a6f985",true);
+
+        ll_ad.addView(new AdView(this, AdSize.FIT_SCREEN));
+
+        jump2Activities();
+    }
+    //跳转到其他功能界面
+    private void jump2Activities() {
         gv_home.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -57,20 +73,26 @@ public class HomeActivity extends Activity {
                             showEnterDialog();
                         }
                         break;
-                    case 1:
+                    case 1://黑名单管理
                         IntentUtils.startActivity(HomeActivity.this, CallBlackActivity.class);
                         break;
-                    case 2:
+                    case 2://软件管理
                         IntentUtils.startActivity(HomeActivity.this, AppManagerActivity.class);
 
                         break;
-                    case 3:
+                    case 3://进程管理
                         IntentUtils.startActivity(HomeActivity.this, ProcessManagerActivity.class);
                         break;
-                    case 7:
-                        IntentUtils.startActivity(HomeActivity.this,AToolAcyivity.class);
+                    case 5://查杀病毒
+                        IntentUtils.startActivity(HomeActivity.this, KillVirusActivity.class);
                         break;
-                    case 8:
+                    case 6://缓存清理
+                        IntentUtils.startActivity(HomeActivity.this, CleanCacheActivity.class);
+                        break;
+                    case 7://高级工具
+                        IntentUtils.startActivity(HomeActivity.this, AToolAcyivity.class);
+                        break;
+                    case 8://系统设置
                         IntentUtils.startActivity(HomeActivity.this, SettingActivity.class);
                         break;
 
@@ -168,7 +190,7 @@ public class HomeActivity extends Activity {
         mDialog.show();
     }
 
-    class HomeAdapter extends BaseAdapter {
+    private class HomeAdapter extends BaseAdapter {
         @Override
         public int getCount() {
             return names.length;

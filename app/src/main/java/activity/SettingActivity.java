@@ -12,6 +12,7 @@ import com.testdemo.chanian.mymobilesafe.R;
 
 import service.CallPhoneBlackServicve;
 import service.ShowAddressService;
+import service.WatchDogService;
 import ui.ChangeUi;
 import ui.SetRelativeLayout;
 import utils.CheckRunningServiceUtils;
@@ -23,6 +24,7 @@ public class SettingActivity extends Activity {
     private SetRelativeLayout set_rel;
     private SetRelativeLayout set_black;
     private SetRelativeLayout set_Address;
+    private SetRelativeLayout set_watch_dog;
     private ChangeUi change_address_color;
     private SharedPreferences mSp;
 
@@ -35,6 +37,7 @@ public class SettingActivity extends Activity {
         mSp = getSharedPreferences("config", MODE_PRIVATE);
         set_black = (SetRelativeLayout) findViewById(R.id.set_black);
         set_rel = (SetRelativeLayout) findViewById(R.id.set_rel);
+        set_watch_dog = (SetRelativeLayout)findViewById(R.id.set_watch_dog);
         set_rel.setChecked(mSp.getBoolean("update", false));
         mItems = new String[]{"半透明","活力橙","卫士蓝","金属灰","苹果绿"};
         set_Address = (SetRelativeLayout)findViewById(R.id.set_Address);
@@ -71,7 +74,7 @@ public class SettingActivity extends Activity {
                 }
             }
         });
-        //监听checkbox的选中状态->通话归属地显示
+        //监听checkbox的选中状态->通话归属地服务显示
         set_Address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,6 +84,20 @@ public class SettingActivity extends Activity {
                     stopService(intent);
                 } else {
                     set_Address.setChecked(true);//开启服务
+                    startService(intent);
+                }
+            }
+        });
+        //监听checkbox的选中状态->开门狗服务显示
+        set_watch_dog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingActivity.this, WatchDogService.class);
+                if (set_watch_dog.getChecked()) {
+                    set_watch_dog.setChecked(false);//关闭服务
+                    stopService(intent);
+                } else {
+                    set_watch_dog.setChecked(true);//开启服务
                     startService(intent);
                 }
             }
@@ -112,6 +129,8 @@ public class SettingActivity extends Activity {
         set_black.setChecked(state);
         boolean state1 = CheckRunningServiceUtils.getServiceRunningState(this, "service.ShowAddressService");
         set_Address.setChecked(state1);
+        boolean state2 = CheckRunningServiceUtils.getServiceRunningState(this, "service.WatchDogService");
+        set_Address.setChecked(state2);
         super.onStart();
     }
 }

@@ -1,29 +1,33 @@
 package activity;
 
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.animation.AlphaAnimation;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.testdemo.chanian.mymobilesafe.R;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -31,7 +35,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-
+import db.dao.VirusDao;
 import utils.AppInfoUtils;
 import utils.IntentUtils;
 import utils.StringUtils;
@@ -56,9 +60,6 @@ public class SplashActivity extends AppCompatActivity {
             switch (msg.what) {
                 case NEED_UPDATE:
                     showUpdateDialog(msg.obj);
-                    break;
-
-                default:
                     break;
             }
         }
@@ -92,7 +93,6 @@ public class SplashActivity extends AppCompatActivity {
                         intent.setDataAndType(Uri.fromFile(file),
                                 "application/vnd.android.package-archive");
                         startActivity(intent);
-
                     }
 
                     @Override
@@ -128,9 +128,17 @@ public class SplashActivity extends AppCompatActivity {
         mSp = getSharedPreferences("config", MODE_PRIVATE);
         copyDb("address.db");
         copyDb("commonnum.db");
+        copyDb("antivirus.db");
+        createShortCut();
+        createStatusBar();
         new Thread() {
             public void run() {
-                //
+                updateVirus();
+
+            }
+        }.start();
+        new Thread() {
+            public void run() {
                 //                if (mSp.getBoolean("update", true)) {
                 //                    checkVersion();
                 //                } else {
@@ -139,6 +147,95 @@ public class SplashActivity extends AppCompatActivity {
                         HomeActivity.class, 2000);
             }
         }.start();
+    }
+    //显示顶层通知栏
+    private void createStatusBar() {
+        //高版本
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setContentTitle("MyMobileSafe")
+                        .setContentText("正在保护你的手机");
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        // mId allows you to update the notification later on.
+        mNotificationManager.notify(0, mBuilder.build());
+
+        //低版本
+//        NotificationManager mNotificationManager =
+//                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//        Notification noti = new Notification(R.mipmap.ic_launcher, "小码哥卫士正在保护您的手机", System.currentTimeMillis());
+//        noti.flags = Notification.FLAG_ONGOING_EVENT|Notification.FLAG_NO_CLEAR;
+//        Intent intent = new Intent();
+//        intent.setAction("com.m520it.mobilsafe.home");
+//        intent.addCategory(Intent.CATEGORY_DEFAULT);
+//        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+//        noti.setLatestEventInfo(this, "小码哥卫士", "正在保护您的手机", contentIntent);
+//        mNotificationManager.notify(0, noti );
+    }
+
+    //生成一个桌面快捷方式
+    private void createShortCut() {
+        //用SharedPreferences保存注册状态,否则每次安装都会生成一个桌面快捷方式
+        boolean ret = mSp.getBoolean("isShortCut", false);
+        if (!ret) {
+            //准备意图和action
+            Intent intent = new Intent();
+            intent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+            //发送图标
+            intent.putExtra(Intent.EXTRA_SHORTCUT_ICON,
+                    BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
+            //发送应用名
+            intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "hehehe");
+            //准备一个新意图
+            Intent newIntent = new Intent();
+            newIntent.setAction("com.ian.mobilesafe.shortcut");
+            newIntent.addCategory(Intent.CATEGORY_DEFAULT);
+            newIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, intent);
+            //将点击桌面回到首页
+            sendBroadcast(newIntent);
+            SharedPreferences.Editor edit = mSp.edit();
+            edit.putBoolean("isShortCut", true);
+            edit.commit();
+        }
+
+
+    }
+
+    private void updateVirus() {
+        try {
+            //创建url
+            URL url = new URL(getString(R.string.virus_url));
+            //打开连接
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setConnectTimeout(5000);
+
+            //获取响应码
+            int code = conn.getResponseCode();
+            //获取输入流
+            if (code == 200) {
+                InputStream stream = conn.getInputStream();
+                String js = StringUtils.getJsonString(stream);
+                JSONObject jsonObject = new JSONObject(js);
+                //获取版本信息
+                int version = jsonObject.getInt("version");
+                String md5 = jsonObject.getString("md5");
+                String desc = jsonObject.getString("desc");
+                String name = jsonObject.getString("name");
+                String type = jsonObject.getString("type");
+                //需要更新
+                if (version > VirusDao.getVersion()) {
+                    VirusDao.setVersion(version);
+                    VirusDao.addVirus(name, md5, desc, type);
+                }
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     //加载本地数据库
@@ -151,8 +248,6 @@ public class SplashActivity extends AppCompatActivity {
                 if (file.exists() && file.length() > 0) {
                     return;
                 }
-                Log.v("ian", "复制");
-
                 try {
                     InputStream is = getAssets().open(dbName);
                     FileOutputStream fos = new FileOutputStream(file);

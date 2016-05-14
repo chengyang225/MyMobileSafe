@@ -115,6 +115,7 @@ public class AppLockActivity extends Activity {
         btn_lock.setBackgroundResource(R.mipmap.tab_right_pressed);
         btn_unlock.setBackgroundResource(R.mipmap.tab_left_default);
     }
+
     //缓存view
     private class ViewHolder {
         private ImageView iv_app_lock_icon;
@@ -122,6 +123,7 @@ public class AppLockActivity extends Activity {
         private ImageView iv_app_lock;
 
     }
+
     //适配器
     private class AppLockAdapter extends BaseAdapter {
         boolean isUnlock;
@@ -145,10 +147,10 @@ public class AppLockActivity extends Activity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolder holder ;
+            ViewHolder holder;
             final View view;
 
-            if (convertView != null&&convertView instanceof RelativeLayout) {
+            if (convertView != null && convertView instanceof RelativeLayout) {
                 view = convertView;
                 holder = (ViewHolder) view.getTag();
             } else {

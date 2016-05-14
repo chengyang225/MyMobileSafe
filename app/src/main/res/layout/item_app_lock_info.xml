@@ -21,7 +21,6 @@
 
     <ImageView
         android:id="@+id/iv_app_lock"
-        android:src="@mipmap/list_button_lock_pressed"
         android:layout_marginRight="10dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
